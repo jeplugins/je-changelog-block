@@ -1,0 +1,326 @@
+.jechangelog {
+  --je-primary: #4f46e5;
+  --je-new: #10b981;
+  --je-fix: #ef4444;
+  --je-improved: #3b82f6;
+  --je-breaking: #f59e0b;
+  --je-deprecated: #6b7280;
+  --je-border: #e5e7eb;
+  --je-bg: #f9fafb;
+  --je-radius: 8px;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #111827;
+    letter-spacing: -0.025em;
+  }
+
+  // Filter Styles
+  &__filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--je-border);
+
+    &--preview {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  }
+
+  &__filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border: 1px solid var(--je-border);
+    border-radius: 9999px;
+    background: #fff;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+      border-color: var(--je-primary);
+      color: var(--je-primary);
+    }
+
+    &--active {
+      background: var(--je-primary);
+      border-color: var(--je-primary);
+      color: #fff;
+
+      &:hover {
+        background: var(--je-primary);
+        color: #fff;
+      }
+
+      .jechangelog__filter-count {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+    }
+
+    &--new:not(.jechangelog__filter-btn--active):hover {
+      border-color: var(--je-new);
+      color: var(--je-new);
+    }
+
+    &--fix:not(.jechangelog__filter-btn--active):hover {
+      border-color: var(--je-fix);
+      color: var(--je-fix);
+    }
+
+    &--improved:not(.jechangelog__filter-btn--active):hover {
+      border-color: var(--je-improved);
+      color: var(--je-improved);
+    }
+
+    &--breaking:not(.jechangelog__filter-btn--active):hover {
+      border-color: var(--je-breaking);
+      color: var(--je-breaking);
+    }
+
+    &--deprecated:not(.jechangelog__filter-btn--active):hover {
+      border-color: var(--je-deprecated);
+      color: var(--je-deprecated);
+    }
+  }
+
+  &__filter-count {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.125rem 0.375rem;
+    border-radius: 9999px;
+    background: var(--je-bg);
+    color: #6b7280;
+  }
+
+  // Show More Styles
+  &__show-more {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+
+    &--preview {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  }
+
+  &__show-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 2px solid var(--je-border);
+    border-radius: 9999px;
+    background: #fff;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: var(--je-primary);
+      color: var(--je-primary);
+      background: color-mix(in srgb, var(--je-primary) 5%, white);
+    }
+
+    &--expanded {
+      border-color: var(--je-primary);
+      color: var(--je-primary);
+    }
+  }
+
+  &__show-more-icon {
+    transition: transform 0.2s ease;
+  }
+
+  // &__show-more-btn--expanded &__show-more-icon {
+  //   transform: rotate(180deg);
+  // }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  // Hidden/Visible entry states for Show More
+  .jechangelog-entry--hidden {
+    display: none;
+  }
+
+  .jechangelog-entry--visible {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  // Timeline Layout
+  &--timeline {
+    .jechangelog__list {
+      position: relative;
+      padding-left: 2rem;
+      margin-left: 0.5rem;
+      padding-top: 0.5rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--je-primary), var(--je-border));
+        border-radius: 2px;
+      }
+    }
+
+    .jechangelog-entry {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -2.35rem;
+        top: 0.5rem;
+        width: 12px;
+        height: 12px;
+        background: var(--je-primary);
+        border: 3px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px var(--je-primary);
+      }
+    }
+
+    // ลบ margin-left: -2rem ออก
+    .jechangelog__show-more {
+      margin-left: 0;
+    }
+  }
+
+  // Cards Layout
+  &--cards {
+    .jechangelog__list {
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .jechangelog-entry {
+      background: #fff;
+      border: 1px solid var(--je-border);
+      border-radius: var(--je-radius);
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-color: var(--je-primary);
+      }
+    }
+  }
+
+  // Compact Layout
+  &--compact {
+    .jechangelog__list {
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .jechangelog-entry {
+      padding: 0.75rem 1rem;
+      background: var(--je-bg);
+      border-radius: var(--je-radius);
+      border-left: 3px solid var(--je-primary);
+    }
+
+    .jechangelog-entry__header {
+      margin-bottom: 0.5rem;
+    }
+
+    .jechangelog-entry__changes {
+      gap: 0.25rem;
+    }
+  }
+
+  // Collapsible Styles
+  &--collapsible {
+    .jechangelog-entry__header {
+      user-select: none;
+      transition: background 0.15s ease;
+      border-radius: 6px;
+      margin: -0.5rem;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 640px) {
+  .jechangelog {
+    &__filter {
+      gap: 0.375rem;
+    }
+
+    &__filter-btn {
+      padding: 0.375rem 0.625rem;
+      font-size: 0.75rem;
+    }
+
+    &__filter-count {
+      display: none;
+    }
+
+    &__show-more-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes highlight {
+  0%,
+  100% {
+    background: transparent;
+  }
+  20%,
+  80% {
+    background: color-mix(in srgb, var(--je-primary, #4f46e5) 10%, transparent);
+  }
+}

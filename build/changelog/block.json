@@ -1,0 +1,82 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "jechangelog/changelog",
+  "version": "1.0.0",
+  "title": "Changelog",
+  "category": "jechangelog",
+  "description": "Display version history and release notes",
+  "keywords": [
+    "changelog",
+    "release",
+    "version"
+  ],
+  "textdomain": "jechangelog-block",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Changelog"
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "layout": {
+      "type": "string",
+      "default": "timeline"
+    },
+    "theme": {
+      "type": "string",
+      "default": "default"
+    },
+    "primaryColor": {
+      "type": "string",
+      "default": "#4f46e5"
+    },
+    "badgeColors": {
+      "type": "object",
+      "default": {
+        "new": "#10b981",
+        "fix": "#ef4444",
+        "improved": "#3b82f6",
+        "breaking": "#f59e0b",
+        "deprecated": "#6b7280"
+      }
+    },
+    "collapsible": {
+      "type": "boolean",
+      "default": false
+    },
+    "defaultExpanded": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableAnchorLinks": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableFilter": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableShowMore": {
+      "type": "boolean",
+      "default": false
+    },
+    "initialCount": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

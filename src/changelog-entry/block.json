@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "jechangelog/changelog-entry",
+  "version": "1.0.0",
+  "title": "Changelog Entry",
+  "category": "jechangelog",
+  "description": "A single changelog entry",
+  "parent": ["jechangelog/changelog"],
+  "textdomain": "jechangelog-block",
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "version": {
+      "type": "string",
+      "default": "1.0.0"
+    },
+    "date": {
+      "type": "string",
+      "default": ""
+    },
+    "changes": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style-index.css"
+}
